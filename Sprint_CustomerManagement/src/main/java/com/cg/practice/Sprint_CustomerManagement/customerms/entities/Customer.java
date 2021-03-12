@@ -3,6 +3,8 @@ package com.cg.practice.Sprint_CustomerManagement.customerms.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,8 @@ public class Customer {
 	@Id
 	private Long custId;
 	private String custName;
+
+	@OneToOne
 	private Account account;
 
 	public Customer() {
