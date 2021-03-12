@@ -1,8 +1,8 @@
 package com.cg.practice.Sprint_CustomerManagement.customerms.exceptions;
 
-public class InvalidIDException extends RuntimeException{
+public class InvalidIdException extends RuntimeException{
 	
-	public InvalidIDException(String msg){
+	public InvalidIdException(String msg){
 		
         super(msg);
     }

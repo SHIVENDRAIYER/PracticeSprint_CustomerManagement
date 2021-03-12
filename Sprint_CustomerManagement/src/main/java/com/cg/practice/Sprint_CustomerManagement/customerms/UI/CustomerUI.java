@@ -26,8 +26,13 @@ public class CustomerUI {
 
 			Customer fetchedCustomer = service.findByID(id);
 			display(fetchedCustomer);
+			
+			
+			Customer shivendraAmount = service.addAmount(4010027L, 1000.0);
+			display(shivendraAmount);
+			
 
-		} catch (InvalidIDException e) {
+		} catch (InvalidIdException e) {
 
 			System.out.println(e.getMessage());
 			e.printStackTrace();

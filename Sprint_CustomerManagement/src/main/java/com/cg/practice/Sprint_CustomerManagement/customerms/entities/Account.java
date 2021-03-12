@@ -12,18 +12,18 @@ public class Account {
 	@GeneratedValue
 	@Id
 	
-	private Long accountId;
+	private Long accountID;
 	private Double balance;
 	private LocalDateTime created;
 
-	public Long getAccountId() {
+	public Long getAccountID() {
 
-		return accountId;
+		return accountID;
 	}
 
-	public void setAccountId(Long accountId) {
+	public void setAccountID(Long accountID) {
 
-		this.accountId = accountId;
+		this.accountID = accountID;
 	}
 
 	public Double getBalance() {
@@ -45,5 +45,14 @@ public class Account {
 
 		this.created = created;
 	}
+
+	@Override
+	public String toString() {
+		
+		return "Account [accountId=" + accountID + ", balance=" + balance + ", created=" + created + "]";
+	}
+
+	
+	
 
 }

@@ -32,11 +32,21 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customer;
 	}
 
+	@Transactional
+	@Override
+	public Customer addAmount(Long customerId, double amount) {
+
+		Customer customer = dao.findByID(customerId);
+		customer.getAccount().setBalance(amount);
+		customer = dao.update(customer);
+		return customer;
+	}
+
 	public void validateId(Long id) {
 
 		if (id < 0) {
 
-			throw new InvalidIDException("id should not be negative");
+			throw new InvalidIdException("id should not be negative");
 		}
 	}
 
