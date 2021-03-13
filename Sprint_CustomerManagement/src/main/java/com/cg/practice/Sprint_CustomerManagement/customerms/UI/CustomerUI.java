@@ -1,45 +1,81 @@
 package com.cg.practice.Sprint_CustomerManagement.customerms.UI;
 
 import com.cg.practice.Sprint_CustomerManagement.customerms.entities.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.entities.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.service.*;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.practice.Sprint_CustomerManagement.customerms.exceptions.*;
 import com.cg.practice.Sprint_CustomerManagement.customerms.service.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.exceptions.*;
 
 @Component
 public class CustomerUI {
-	
+
 	@Autowired
-	private ICustomerService service;
+	private ICustomerService custService;
+
+	@Autowired
+	private IItemService itemService;
 
 	public void start() {
-		
+
 		try {
 
-			Customer shivendra = service.createCustomer("Shivendra");
-			Customer iyer = service.createCustomer("Iyer");
+			Customer shivendra = custService.createCustomer("Shivendra");
+			Customer iyer = custService.createCustomer("Iyer");
 
-			display(shivendra);
-			display(iyer);
+			displayCustomer(shivendra);
+			displayCustomer(iyer);
+
+			Customer fetchedCustomer = custService.findByID(4L);
+			displayCustomer(fetchedCustomer);
 
 			Long id = shivendra.getCustId();
+			Customer shivendraAmount = custService.addAmount(id, 1000.0);
+			displayCustomer(shivendraAmount);
 
-			Customer fetchedCustomer = service.findByID(id);
-			display(fetchedCustomer);
-			
-			
-			Customer shivendraAmount = service.addAmount(4010027L, 1000.0);
-			display(shivendraAmount);
-			
+			Set<Item> item1 = custService.itemsBoughtByCustomer(shivendra.getCustId());
+			for (Item item : item1) {
+
+				System.out.println(item.getDescription());
+			}
+
+			Item piano = itemService.create(5000.0, "Music Piano");
+			Item game = itemService.create(6000.0, "DB game");
+
+			displayItem(piano);
+			displayItem(game);
+
+			String itemId = piano.getItemId();
+			Item findItem = itemService.findByID(itemId);
+			displayItem(findItem);
+
+			Item item_1 = itemService.buyItem(piano.getItemId(), shivendra.getCustId());
+			System.out.println("Item bought is = " + item_1.getDescription());
+
+			Item item_2 = itemService.buyItem(game.getItemId(), iyer.getCustId());
+			System.out.println("Item bought is = " + item_2.getDescription());
 
 		} catch (InvalidIdException e) {
 
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			
+
 		} catch (InvalidNameException e) {
 
 			System.out.println(e.getMessage());
+			e.printStackTrace();
+
+		} catch (CustomerNotFoundException e) {
+
+			System.out.println("customer not found");
+			e.printStackTrace();
+
+		} catch (ItemNotFoundException e) {
+
+			System.out.println("item not found");
 			e.printStackTrace();
 
 		} catch (Exception e) {
@@ -49,8 +85,17 @@ public class CustomerUI {
 		}
 	}
 
-	public void display(Customer customer) {
+	public void displayCustomer(Customer customer) {
 
-		System.out.println(customer.toString());
+		Account account = customer.getAccount();
+		System.out.println("Customer: " + customer.getCustId() + " " + customer.getCustName() + " "
+				+ account.getAccountID() + " " + account.getBalance() + " " + account.getCreated());
+	}
+
+	public void displayItem(Item item) {
+
+		System.out.println("Item: " + item.getItemId() + " " + item.getPrice() + " " + item.getDescription() + " "
+				+ item.getAddedDate());
+
 	}
 }

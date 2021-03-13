@@ -1,38 +1,43 @@
 package com.cg.practice.Sprint_CustomerManagement.itemms.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import com.cg.practice.Sprint_CustomerManagement.customerms.entities.*;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Item {
 
-	
 	@Id
-	private String id;
+	private String itemId;
 	private Double price;
 	private String description;
 	private LocalDateTime addedDate;
 
+	@ManyToOne
+	private Customer boughtBy;
+
 	public Item() {
 
 	}
-	
+
 	public Item(Double price, String description) {
-		
+
 		this.price = price;
-		this.description =description;
+		this.description = description;
 	}
 
-	public String getId() {
+	public String getItemId() {
 
-		return id;
+		return itemId;
 	}
 
-	public void setId(String id) {
+	public void setId(String itemId) {
 
-		this.id = id;
+		this.itemId = itemId;
 	}
 
 	public Double getPrice() {
@@ -65,10 +70,42 @@ public class Item {
 		this.addedDate = addedDate;
 	}
 
+	public Customer getBoughtBy() {
+
+		return boughtBy;
+	}
+
+	public void setBoughtBy(Customer boughtBy) {
+
+		this.boughtBy = boughtBy;
+	}
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", price=" + price + ", description=" + description + ", addedDate=" + addedDate
-				+ "]";
+		return "Item [id=" + itemId + ", price=" + price + ", description=" + description + ", addedDate=" + addedDate
+				+ ", boughtBy=" + boughtBy + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (itemId == null) {
+			if (other.itemId != null)
+				return false;
+		} else if (!itemId.equals(other.itemId))
+			return false;
+		return true;
+	}
+
+	public int hashCode() {
+
+		return Objects.hash(itemId);
 	}
 
 }

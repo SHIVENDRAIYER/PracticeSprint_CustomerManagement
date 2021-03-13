@@ -1,6 +1,7 @@
 package com.cg.practice.Sprint_CustomerManagement.itemms.dao;
 
 import javax.persistence.PersistenceContext;
+import java.util.Random;
 
 import org.springframework.stereotype.Repository;
 import com.cg.practice.Sprint_CustomerManagement.itemms.entities.*;
@@ -13,18 +14,24 @@ public class ItemDaoImpl implements IItemDao {
 	private EntityManager entityManager;
 
 	public String generateStringId(Item item) {
-
-		String s = "hirudegarn";
-		s = s + Math.random();
-		return s;
-
+		
+		Random random = new Random();
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < 10; i++) {
+			
+			int generatedDigit = random.nextInt(9);
+			builder.append(generatedDigit);
+		}
+		
+		String itemId = builder.toString();
+		return itemId;
 	}
 
 	@Override
 	public Item add(Item item) {
 
-		String id = generateStringId(item);
-		item.setId(id);
+		String itemId = generateStringId(item);
+		item.setId(itemId);
 		entityManager.persist(item);
 		return item;
 	}

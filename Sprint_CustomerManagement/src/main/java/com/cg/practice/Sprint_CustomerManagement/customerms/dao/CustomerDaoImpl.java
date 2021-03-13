@@ -1,6 +1,7 @@
 package com.cg.practice.Sprint_CustomerManagement.customerms.dao;
 
 import org.springframework.stereotype.Repository;
+import com.cg.practice.Sprint_CustomerManagement.customerms.exceptions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,6 +25,10 @@ public class CustomerDaoImpl implements ICustomerDao {
 	public Customer findByID(Long customerID) {
 		
 		Customer customer = entityManager.find(Customer.class, customerID);
+		if(customer ==null)
+		{
+			throw new CustomerNotFoundException("Customer does not exist");
+		}
 		return customer;
 	}
 
