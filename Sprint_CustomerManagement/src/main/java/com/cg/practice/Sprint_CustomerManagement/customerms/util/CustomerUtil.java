@@ -12,27 +12,27 @@ public class CustomerUtil {
 
 	public CustomerDetails toDetail(Customer customer) {
 
-		CustomerDetails details = new CustomerDetails();
+		CustomerDetails custDetails = new CustomerDetails();
 
-		details.setCustID(customer.getCustID());
-		details.setCustName(customer.getCustName());
-		details.setAccountID(customer.getAccount().getAccountID());
-		details.setBalance(customer.getAccount().getBalance());
+		custDetails.setCustID(customer.getCustID());
+		custDetails.setCustName(customer.getCustName());
+		custDetails.setAccountID(customer.getAccount().getAccountID());
+		custDetails.setBalance(customer.getAccount().getBalance());
 
-		return details;
+		return custDetails;
 	}
 
 	public List<CustomerDetails> toDetailsList(Collection<Customer> customers) {
 
-		List<CustomerDetails> desired = new ArrayList<>();
+		List<CustomerDetails> custDesired = new ArrayList<>();
 
 		for (Customer customer : customers) {
 
-			CustomerDetails details = toDetail(customer);
-			desired.add(details);
+			CustomerDetails custDetails = toDetail(customer);
+			custDesired.add(custDetails);
 		}
 
-		return desired;
+		return custDesired;
 
 	}
 

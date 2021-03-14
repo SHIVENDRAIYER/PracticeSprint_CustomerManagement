@@ -14,7 +14,7 @@ import com.cg.practice.Sprint_CustomerManagement.itemms.exceptions.*;
 public class CustomerUI {
 
 	@Autowired
-	private ICustomerService custService;
+	private ICustomerService customerService;
 
 	@Autowired
 	private IItemService itemService;
@@ -23,20 +23,20 @@ public class CustomerUI {
 
 		try {
 
-			Customer shivendra = custService.createCustomer("Shivendra");
-			Customer iyer = custService.createCustomer("Iyer");
+			Customer shivendra = customerService.createCustomer("Shivendra");
+			Customer iyer = customerService.createCustomer("Iyer");
 
 			displayCustomer(shivendra);
 			displayCustomer(iyer);
 
-			Customer fetchedCustomer = custService.findByID(4L);
+			Customer fetchedCustomer = customerService.findByID(4L);
 			displayCustomer(fetchedCustomer);
 
 			Long id = shivendra.getCustID();
-			Customer shivendraAmount = custService.addAmount(id, 1000.0);
+			Customer shivendraAmount = customerService.addAmount(id, 1000.0);
 			displayCustomer(shivendraAmount);
 
-			Set<Item> item1 = custService.itemsBoughtByCustomer(shivendra.getCustID());
+			Set<Item> item1 = customerService.itemsBoughtByCustomer(shivendra.getCustID());
 			for (Item item : item1) {
 
 				System.out.println(item.getDescription());

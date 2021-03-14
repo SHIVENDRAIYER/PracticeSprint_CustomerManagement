@@ -17,24 +17,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class CustomerRestController {
 
 	@Autowired
-	private ICustomerService service;
+	private ICustomerService customerService;
 
 	@Autowired
-	private CustomerUtil util;
+	private CustomerUtil customerUtil;
 
 	@PostMapping("/add")
 	public CustomerDetails addNewCustomer(@RequestBody CreateCustomerRequest request) {
-		return util.toDetail(service.createCustomer(request.getCustName()));
+
+		return customerUtil.toDetail(customerService.createCustomer(request.getCustName()));
 	}
 
 	@GetMapping("/findbyid/{id}")
 	public CustomerDetails findById(@PathVariable long id) {
-		return util.toDetail(service.findByID(id));
+
+		return customerUtil.toDetail(customerService.findByID(id));
 	}
 
 	@PutMapping("/account/amount")
 	public CustomerDetails addAmount(@RequestBody AddAmountRequest request) {
-		return util.toDetail(service.addAmount(request.getAccountID(), request.getAmount()));
+
+		return customerUtil.toDetail(customerService.addAmount(request.getAccountID(), request.getAmount()));
 	}
 
 }

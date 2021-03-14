@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	private EntityManager entityManager;
 	@Autowired
-	private ICustomerDao dao;
+	private ICustomerDao customerDao;
 
 	@Transactional
 	@Override
@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		customer.setAccount(account);
 		customer.setCustName(name);
 		entityManager.persist(account);
-		customer = dao.add(customer);
+		customer = customerDao.add(customer);
 		return customer;
 	}
 
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer findByID(Long customerID) {
 
 		validateId(customerID);
-		Customer customer = dao.findByID(customerID);
+		Customer customer = customerDao.findByID(customerID);
 		return customer;
 	}
 
@@ -46,9 +46,9 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public Customer addAmount(Long customerID, double amount) {
 
-		Customer customer = dao.findByID(customerID);
+		Customer customer = customerDao.findByID(customerID);
 		customer.getAccount().setBalance(amount);
-		customer = dao.update(customer);
+		customer = customerDao.update(customer);
 		return customer;
 	}
 
