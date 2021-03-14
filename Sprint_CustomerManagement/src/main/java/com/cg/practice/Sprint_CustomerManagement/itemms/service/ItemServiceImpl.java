@@ -1,6 +1,7 @@
 package com.cg.practice.Sprint_CustomerManagement.itemms.service;
 
 import javax.transaction.Transactional;
+import java.util.*;
 import com.cg.practice.Sprint_CustomerManagement.customerms.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,16 @@ public class ItemServiceImpl implements IItemService {
 		Item item = findByID(itemID);
 		Customer customer = customerDao.findByID(customerID);
 		item.setBoughtBy(customer);
-		entityManager.merge(item);
+		
+		itemDao.update(item);
+		Set<Item>items=customer.getBoughtItems();
+		if(items==null)
+		{
+			items=new HashSet<>();
+			customer.setBoughtItems(items);
+		}
+		items.add(item);
+		customerDao.update(customer);
 		return item;
 	}
 

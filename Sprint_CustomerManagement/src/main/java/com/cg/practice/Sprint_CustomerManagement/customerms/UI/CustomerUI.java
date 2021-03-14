@@ -23,9 +23,9 @@ public class CustomerUI {
 
 		try {
 
+
 			Customer shivendra = customerService.createCustomer("Shivendra");
 			Customer iyer = customerService.createCustomer("Iyer");
-
 			displayCustomer(shivendra);
 			displayCustomer(iyer);
 
