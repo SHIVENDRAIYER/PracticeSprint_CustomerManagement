@@ -1,6 +1,10 @@
 package com.cg.practice.Sprint_CustomerManagement.customerms.controllers;
 
 import com.cg.practice.Sprint_CustomerManagement.customerms.util.*;
+import java.util.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.util.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.entities.*;
+import com.cg.practice.Sprint_CustomerManagement.itemms.dto.*;
 import com.cg.practice.Sprint_CustomerManagement.customerms.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.cg.practice.Sprint_CustomerManagement.customerms.dto.*;
@@ -22,6 +26,9 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerUtil customerUtil;
 
+	@Autowired
+	private ItemUtil itemUtil;
+
 	@PostMapping("/add")
 	public CustomerDetails addNewCustomer(@RequestBody CreateCustomerRequest request) {
 
@@ -38,6 +45,12 @@ public class CustomerRestController {
 	public CustomerDetails addAmount(@RequestBody AddAmountRequest request) {
 
 		return customerUtil.toDetail(customerService.addAmount(request.getAccountID(), request.getAmount()));
+	}
+
+	@GetMapping("/customer/{id}")
+	public Set<ItemDetails> itemBoughtByCustomer(@PathVariable Long id) {
+		Set<Item> itemSet = customerService.itemsBoughtByCustomer(id);
+		return itemUtil.toDetailSet(itemSet);
 	}
 
 }

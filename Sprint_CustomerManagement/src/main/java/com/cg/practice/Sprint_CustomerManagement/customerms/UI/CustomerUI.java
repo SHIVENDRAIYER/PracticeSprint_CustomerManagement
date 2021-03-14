@@ -36,12 +36,6 @@ public class CustomerUI {
 			Customer shivendraAmount = customerService.addAmount(id, 1000.0);
 			displayCustomer(shivendraAmount);
 
-			Set<Item> item1 = customerService.itemsBoughtByCustomer(shivendra.getCustID());
-			for (Item item : item1) {
-
-				System.out.println(item.getDescription());
-			}
-
 			Item piano = itemService.create(5000.0, "Music Piano");
 			Item game = itemService.create(6000.0, "DB game");
 
@@ -57,6 +51,13 @@ public class CustomerUI {
 
 			Item item_2 = itemService.buyItem(game.getItemID(), iyer.getCustID());
 			System.out.println("Item bought is = " + item_2.getDescription());
+			
+
+			Set<Item> item1 = customerService.itemsBoughtByCustomer(shivendra.getCustID());
+			for (Item item : item1) {
+
+				System.out.println(item.getDescription() + " is bought by " + item.getBoughtBy().getCustName());
+			}
 
 		} catch (InvalidCustomerIdException e) {
 

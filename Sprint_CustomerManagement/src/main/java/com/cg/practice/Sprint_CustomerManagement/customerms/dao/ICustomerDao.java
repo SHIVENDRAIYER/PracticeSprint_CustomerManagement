@@ -1,4 +1,4 @@
-package com.cg.practice.Sprint_CustomerManagement.customerms.dao;
+/*package com.cg.practice.Sprint_CustomerManagement.customerms.dao;
 
 import com.cg.practice.Sprint_CustomerManagement.customerms.entities.*;
 
@@ -10,3 +10,4 @@ public interface ICustomerDao {
 
 	Customer update(Customer customer);
 }
+*/

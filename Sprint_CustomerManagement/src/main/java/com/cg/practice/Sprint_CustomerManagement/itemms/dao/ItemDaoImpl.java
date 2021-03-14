@@ -1,4 +1,4 @@
-package com.cg.practice.Sprint_CustomerManagement.itemms.dao;
+/*package com.cg.practice.Sprint_CustomerManagement.itemms.dao;
 
 import javax.persistence.PersistenceContext;
 import java.util.Random;
@@ -51,3 +51,4 @@ public class ItemDaoImpl implements IItemDao {
 	}
 
 }
+*/

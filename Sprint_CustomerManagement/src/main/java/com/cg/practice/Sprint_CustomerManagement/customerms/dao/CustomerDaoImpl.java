@@ -1,4 +1,4 @@
-package com.cg.practice.Sprint_CustomerManagement.customerms.dao;
+/*package com.cg.practice.Sprint_CustomerManagement.customerms.dao;
 
 import org.springframework.stereotype.Repository;
 import com.cg.practice.Sprint_CustomerManagement.customerms.exceptions.*;
@@ -40,3 +40,4 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 
 }
+*/

@@ -1,4 +1,4 @@
-package com.cg.practice.Sprint_CustomerManagement.itemms.dao;
+/*package com.cg.practice.Sprint_CustomerManagement.itemms.dao;
 
 import com.cg.practice.Sprint_CustomerManagement.itemms.entities.*;
 public interface IItemDao {
@@ -10,3 +10,4 @@ public interface IItemDao {
 	Item findByID(String itemID);
 
 }
+*/
