@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Item {
 
 	@Id
-	private String itemId;
+	private String itemID;
 	private Double price;
 	private String description;
 	private LocalDateTime addedDate;
@@ -30,14 +30,14 @@ public class Item {
 		this.description = description;
 	}
 
-	public String getItemId() {
+	public String getItemID() {
 
-		return itemId;
+		return itemID;
 	}
 
-	public void setId(String itemId) {
+	public void setId(String itemID) {
 
-		this.itemId = itemId;
+		this.itemID = itemID;
 	}
 
 	public Double getPrice() {
@@ -82,12 +82,14 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + itemId + ", price=" + price + ", description=" + description + ", addedDate=" + addedDate
+
+		return "Item [id=" + itemID + ", price=" + price + ", description=" + description + ", addedDate=" + addedDate
 				+ ", boughtBy=" + boughtBy + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -95,17 +97,18 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (itemId == null) {
-			if (other.itemId != null)
+		if (itemID == null) {
+
+			if (other.itemID != null)
 				return false;
-		} else if (!itemId.equals(other.itemId))
+		} else if (!itemID.equals(other.itemID))
 			return false;
 		return true;
 	}
 
 	public int hashCode() {
 
-		return Objects.hash(itemId);
+		return Objects.hash(itemID);
 	}
 
 }

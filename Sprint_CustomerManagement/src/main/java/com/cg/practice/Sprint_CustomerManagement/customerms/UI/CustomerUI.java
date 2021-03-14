@@ -32,11 +32,11 @@ public class CustomerUI {
 			Customer fetchedCustomer = custService.findByID(4L);
 			displayCustomer(fetchedCustomer);
 
-			Long id = shivendra.getCustId();
+			Long id = shivendra.getCustID();
 			Customer shivendraAmount = custService.addAmount(id, 1000.0);
 			displayCustomer(shivendraAmount);
 
-			Set<Item> item1 = custService.itemsBoughtByCustomer(shivendra.getCustId());
+			Set<Item> item1 = custService.itemsBoughtByCustomer(shivendra.getCustID());
 			for (Item item : item1) {
 
 				System.out.println(item.getDescription());
@@ -48,22 +48,22 @@ public class CustomerUI {
 			displayItem(piano);
 			displayItem(game);
 
-			String itemId = piano.getItemId();
+			String itemId = piano.getItemID();
 			Item findItem = itemService.findByID(itemId);
 			displayItem(findItem);
 
-			Item item_1 = itemService.buyItem(piano.getItemId(), shivendra.getCustId());
+			Item item_1 = itemService.buyItem(piano.getItemID(), shivendra.getCustID());
 			System.out.println("Item bought is = " + item_1.getDescription());
 
-			Item item_2 = itemService.buyItem(game.getItemId(), iyer.getCustId());
+			Item item_2 = itemService.buyItem(game.getItemID(), iyer.getCustID());
 			System.out.println("Item bought is = " + item_2.getDescription());
 
-		} catch (InvalidIdException e) {
+		} catch (InvalidCustomerIdException e) {
 
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 
-		} catch (InvalidNameException e) {
+		} catch (InvalidCustomerNameException e) {
 
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -88,13 +88,13 @@ public class CustomerUI {
 	public void displayCustomer(Customer customer) {
 
 		Account account = customer.getAccount();
-		System.out.println("Customer: " + customer.getCustId() + " " + customer.getCustName() + " "
+		System.out.println("Customer: " + customer.getCustID() + " " + customer.getCustName() + " "
 				+ account.getAccountID() + " " + account.getBalance() + " " + account.getCreated());
 	}
 
 	public void displayItem(Item item) {
 
-		System.out.println("Item: " + item.getItemId() + " " + item.getPrice() + " " + item.getDescription() + " "
+		System.out.println("Item: " + item.getItemID() + " " + item.getPrice() + " " + item.getDescription() + " "
 				+ item.getAddedDate());
 
 	}

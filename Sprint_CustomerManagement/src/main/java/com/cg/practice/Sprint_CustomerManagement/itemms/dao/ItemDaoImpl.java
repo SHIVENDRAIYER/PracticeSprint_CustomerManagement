@@ -16,14 +16,14 @@ public class ItemDaoImpl implements IItemDao {
 	public String generateStringId(Item item) {
 		
 		Random random = new Random();
-		StringBuilder builder = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 10; i++) {
 			
 			int generatedDigit = random.nextInt(9);
-			builder.append(generatedDigit);
+			sb.append(generatedDigit);
 		}
 		
-		String itemId = builder.toString();
+		String itemId = sb.toString();
 		return itemId;
 	}
 

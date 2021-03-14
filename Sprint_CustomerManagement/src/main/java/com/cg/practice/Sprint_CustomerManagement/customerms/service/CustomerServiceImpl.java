@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 		if (id < 0) {
 
-			throw new InvalidIdException("id should not be negative");
+			throw new InvalidCustomerIdException("id should not be negative");
 		}
 	}
 
@@ -73,7 +73,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 		if (name == null || name.isEmpty() || name.trim().isEmpty()) {
 
-			throw new InvalidNameException("name can't be null or empty");
+			throw new InvalidCustomerNameException("name can't be null or empty");
 		}
 	}
 

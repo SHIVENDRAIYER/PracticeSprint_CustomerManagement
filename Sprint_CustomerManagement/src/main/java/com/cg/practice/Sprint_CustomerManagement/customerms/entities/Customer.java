@@ -16,13 +16,13 @@ public class Customer {
 
 	@GeneratedValue
 	@Id
-	private Long custId;
+	private Long custID;
 	private String custName;
 
 	@OneToOne
 	private Account account;
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Item> boughtItems;
 
 	public Customer() {
@@ -35,14 +35,14 @@ public class Customer {
 		this.account = account;
 	}
 
-	public Long getCustId() {
+	public Long getCustID() {
 
-		return custId;
+		return custID;
 	}
 
-	public void setCustId(Long custId) {
+	public void setCustID(Long custID) {
 
-		this.custId = custId;
+		this.custID = custID;
 	}
 
 	public String getCustName() {
@@ -75,7 +75,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [custId=" + custId + ", custName=" + custName + ", account=" + account + ", boughtItems="
+		return "Customer [custId=" + custID + ", custName=" + custName + ", account=" + account + ", boughtItems="
 				+ boughtItems + "]";
 	}
 
@@ -87,12 +87,12 @@ public class Customer {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		Customer customer = (Customer) o;
-		return Objects.equals(custId, customer.custId);
+		return Objects.equals(custID, customer.custID);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(custId);
+		return Objects.hash(custID);
 	}
 }
